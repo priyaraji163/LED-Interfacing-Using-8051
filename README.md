@@ -28,32 +28,31 @@ o	Ground (GND) connection
 
 
 ## Program:
+
 ```
-ORG 0000
-L:MOV DPTR,#0100H
-MOV R1,#0AH
-BACK: CLR A
-MOVC A,@A+DPTR
-MOV P2,A
-ACALL D
-INC DPTR
-DJNZ R1,BACK
-SJMP L
-D:MOV R5,#05
-B2:MOV R3,#255 
-B1:MOV R4,#255
-AG:DJNZ R4,AG
-DJNZ R3,B1
-DJNZ R5,B2
-RET
-ORG 0100H
-DB 3FH,06H,5BH,4FH,66H,6DH,7DH,07H,7FH,6FH
-END
+#include<reg51.h>
+void main()
+{
+unsigned char x,y;
+unsigned int i;
+P1=0x00;
+while(1)
+	{   
+	x=0x01;
+	for(y=0;y<8;y++)	
+		{
+		P1=x;
+    for(i=0;i<60000;i++);
+    x=x<<1;
+    }			
+	}	
+}
 ```
+
 
 ## Output:
-<img width="1379" height="745" alt="MPMC EXP 7" src="https://github.com/user-attachments/assets/a0ed47e3-894f-485e-9eb1-b28e3847354c" />
 
+<img width="1916" height="1109" alt="image" src="https://github.com/user-attachments/assets/c4d482d3-6c18-42a1-9a72-f1119aa182c6" />
 
 
 ## Result:
